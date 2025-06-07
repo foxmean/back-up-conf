@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -73,7 +80,6 @@ ZSH_THEME="awesomepanda"
 plugins=(
   git
   bundler
-  direnv
   dotenv
   macos
   rake
@@ -122,24 +128,29 @@ alias la="lsd -lah"
 alias tree="lsd --tree"
 alias nb="nix flake update && darwin-rebuild switch --flake . && nix-store --gc"
 
+
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # GPG things
 export GPG_TTY=$(tty)
 gpgconf --launch gpg-agent
 
 
 # Created by `pipx` on 2024-06-08 06:10:28
-export PATH="$PATH:/Users/pkmean/.local/bin:/Users/pkmean/.cabal/bin"
+export PATH="$PATH:/Users/pkmean/.local/bin"
 # Fix bug python-lzo: https://github.com/jd-boyd/python-lzo/issues/23#issuecomment-1000231024
 
 
 # For compilers to find binutils 
-# export LDFLAGS="-L/opt/homebrew/opt/binutils/lib"
-# export CPPFLAGS="-I/opt/homebrew/opt/binutils/include"
+export LDFLAGS="-L/opt/homebrew/opt/binutils/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/binutils/include"
 # If you need to have binutils first in your PATH -> export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
 # use the bundled libc++ please add the following LDFLAGS:
-# export LDFLAGS="-L$HOMEBREW_PREFIX/opt/llvm/lib/c++ -L$HOMEBREW_PREFIX/opt/llvm/lib -lunwind$LDFLAGS"
+export LDFLAGS="-L$HOMEBREW_PREFIX/opt/llvm/lib/c++ -L$HOMEBREW_PREFIX/opt/llvm/lib -lunwind$LDFLAGS"
 
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-[ -f "/Users/pkmean/.ghcup/env" ] && . "/Users/pkmean/.ghcup/env" # ghcup-env
