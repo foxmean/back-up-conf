@@ -1,8 +1,8 @@
+# brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -89,7 +89,7 @@ export ZPLUG_HOME=$HOMEBREW_PREFIX/opt/zplug
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-source $ZSH/oh-my-zsh.sh
+eval "$(starship init zsh)"
 
 # User configuration
 
@@ -132,14 +132,10 @@ export PATH="$PATH:/Users/pkmean/.local/bin:/Users/pkmean/.cabal/bin"
 # Fix bug python-lzo: https://github.com/jd-boyd/python-lzo/issues/23#issuecomment-1000231024
 
 
-# For compilers to find binutils 
-# export LDFLAGS="-L/opt/homebrew/opt/binutils/lib"
-# export CPPFLAGS="-I/opt/homebrew/opt/binutils/include"
-# If you need to have binutils first in your PATH -> export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
-# use the bundled libc++ please add the following LDFLAGS:
-# export LDFLAGS="-L$HOMEBREW_PREFIX/opt/llvm/lib/c++ -L$HOMEBREW_PREFIX/opt/llvm/lib -lunwind$LDFLAGS"
-
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [ -f "/Users/pkmean/.ghcup/env" ] && . "/Users/pkmean/.ghcup/env" # ghcup-env
+
+# direnv
+eval "$(direnv hook zsh)"
+
